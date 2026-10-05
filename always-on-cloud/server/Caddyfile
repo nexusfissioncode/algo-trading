@@ -1,0 +1,6 @@
+# Caddy answers on 443 with a free certificate and hands each alert to the receiver.
+# On the server, the placeholder below becomes the VM's static address as a name:
+# 34.1.2.3 becomes 34.1.2.3.sslip.io
+HOST {
+	reverse_proxy localhost:8765
+}

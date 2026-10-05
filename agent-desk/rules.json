@@ -1,0 +1,6 @@
+{
+  "symbols": ["BTC/USD", "ETH/USD"],
+  "max_dollars_per_order": 1000,
+  "never_double_up": true,
+  "max_loss_per_day": 200
+}

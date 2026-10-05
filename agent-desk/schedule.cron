@@ -1,0 +1,2 @@
+# every four hours, on the hour: one pass of the desk over every coin in rules.json
+0 */4 * * *   /home/trader/algo-trading/agent-desk/run-desk.sh

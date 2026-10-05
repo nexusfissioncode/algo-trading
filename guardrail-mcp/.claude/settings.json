@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "defaultMode": "default",
+    "allow": [
+      "mcp__guard__rsi",
+      "mcp__alpaca__get_account_info",
+      "mcp__alpaca__get_all_positions",
+      "mcp__alpaca__get_orders",
+      "mcp__alpaca__get_crypto_latest_quote",
+      "mcp__alpaca__get_crypto_snapshot",
+      "mcp__alpaca__get_crypto_bars"
+    ],
+    "deny": [
+      "mcp__alpaca__place_crypto_order",
+      "mcp__alpaca__place_stock_order",
+      "mcp__alpaca__place_option_order",
+      "mcp__alpaca__close_position",
+      "mcp__alpaca__close_all_positions",
+      "mcp__alpaca__replace_order_by_id"
+    ]
+  }
+}

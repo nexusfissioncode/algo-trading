@@ -1,0 +1,19 @@
+# The receiver from story 1, run by systemd: started at boot, restarted if it ever stops.
+# Install: sudo cp alert-bot.service /etc/systemd/system/ && sudo systemctl enable --now alert-bot
+[Unit]
+Description=TradingView alert to Claude to Alpaca
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=trader
+WorkingDirectory=/home/trader/alert-bot
+# claude and uvx live in ~/.local/bin; gcloud comes with the Google Debian image
+Environment=PATH=/home/trader/.local/bin:/usr/local/bin:/usr/bin:/bin
+# start.sh fetches the secrets from Secret Manager, then runs receiver.py
+ExecStart=/bin/sh start.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

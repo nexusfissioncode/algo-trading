@@ -1,0 +1,7 @@
+__pycache__/
+.env
+.pytest_cache/
+.venv/
+desk-log.jsonl
+desk-runs.txt
+runs.log
