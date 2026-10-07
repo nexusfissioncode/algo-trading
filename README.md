@@ -10,7 +10,7 @@ and every folder's own README lists the commands.
 | [`always-on-cloud/`](always-on-cloud) | The same bot on a free Google Cloud e2-micro, always on: systemd, Caddy, keys on the server. | [My AI trading bot runs 24/7 on a free Google Cloud server](https://youtu.be/K26jC0z6n2w) |
 | [`guardrail-mcp/`](guardrail-mcp) | Your own MCP server: an RSI tool, and an order tool that checks your rules in code before anything reaches the broker. | [I tried to talk my AI past my trading rules. Code stopped it.](https://youtu.be/b_npdVpQN9k) |
 | [`scheduled-agents/`](scheduled-agents) | Two Claude Code skills - a morning brief and a trade journal - run by cron, read-only, with nobody at the keyboard. | [My AI agent writes my trading brief at 6:30am](https://youtu.be/XZ1VAnWPryQ) |
-| [`agent-desk/`](agent-desk) | A desk of three agents on the Claude Agent SDK - an analyst, a risk manager and a trader - that check each other before an order goes anywhere. | coming next |
+| [`agent-desk/`](agent-desk) | A desk of three agents on the Claude Agent SDK - an analyst, a risk manager and a trader - that check each other before an order goes anywhere. | [I split my AI trader into three agents](https://youtu.be/hw7mvZeQZxE) |
 
 ## Before you run anything
 
