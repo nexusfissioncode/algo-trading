@@ -10,7 +10,7 @@ import sys
 import strategy
 from agent import STRONG, run_agent
 
-INSTRUCTIONS = """You read a trading strategy written in plain English, before anyone trades with it.
+INSTRUCTIONS = """You read a trading strategy in plain English, before anyone trades with it.
 Restate every rule as a condition a machine can check, using only these numbers: price, change24h,
 high24h, low24h, rsiN, smaN, emaN (N a number of bars), each on 1-hour or 1-day bars, plus the
 position's avg_entry. Write the condition like: rsi14(1h) < 40.

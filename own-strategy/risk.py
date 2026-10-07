@@ -16,7 +16,8 @@ decide "approve" or "veto". You never place orders.
 - Veto a ticket that names no rule, or whose rule does not hold on the numbers you measured.
 - Veto a buy if the account already holds the coin or has an open order for it.
 - Veto a sell if the account does not hold the coin.
-- A buy is at most the strategy's size, at most {RULES['max_dollars_per_order']} dollars, and at most a tenth of the cash.
+- A buy is at most the strategy's size, at most {RULES['max_dollars_per_order']} dollars, and at
+  most a tenth of the cash.
 - Veto a buy if today's loss is {RULES['max_loss_per_day']} dollars or more.
 List what you checked in "checks", a few words each, with the numbers.
 
@@ -45,7 +46,8 @@ TOOLS = [
 
 async def risk(ticket, strat):
     return await run_agent("risk", task="The analyst's ticket:\n" + json.dumps(ticket, indent=2),
-                           instructions=BRIEF + strat["text"], answer=VERDICT, tools=TOOLS, model=STRONG)
+                           instructions=BRIEF + strat["text"], answer=VERDICT, tools=TOOLS,
+                           model=STRONG)
 
 
 if __name__ == "__main__":

@@ -54,7 +54,8 @@ TOOLS = [
 
 async def analyst(symbol, strat):
     return await run_agent("analyst", task=f"Write the ticket for {symbol}.",
-                           instructions=BRIEF + strat["text"], answer=TICKET, tools=TOOLS, model=FAST)
+                           instructions=BRIEF + strat["text"], answer=TICKET, tools=TOOLS,
+                           model=FAST)
 
 
 if __name__ == "__main__":

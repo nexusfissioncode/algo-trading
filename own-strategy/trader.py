@@ -24,7 +24,8 @@ REPORT = {
 }
 
 TOOLS = [as_tool("place_order", "Buy a coin for a number of dollars, or sell (side sell) the whole"
-                 " position, in the paper account, if the rules allow it.", {"symbol": str, "side": str, "dollars": float},
+                 " position, in the paper account, if the rules allow it.",
+                 {"symbol": str, "side": str, "dollars": float},
                  guard.place)]
 
 
@@ -34,7 +35,8 @@ def differs(signed, call):
     for key in ("symbol", "side"):
         if call.get(key) != signed[key]:
             out.append(f"{key} {call.get(key)!r}, signed {signed[key]!r}")
-    if signed["side"] == "buy" and abs(float(call.get("dollars", 0)) - float(signed["dollars"])) > 0.005:
+    off = abs(float(call.get("dollars", 0)) - float(signed["dollars"]))
+    if signed["side"] == "buy" and off > 0.005:
         out.append(f"dollars {call.get('dollars')}, signed {signed['dollars']}")
     return out
 
@@ -58,7 +60,7 @@ async def trader(signed, asked=None):
     """Place the signed order. `asked`: what the trader is told, if someone says something else."""
     order = asked or signed
     if order["side"] == "sell":
-        task = f"Place this order: sell the whole {order['symbol']} position (side sell, dollars 0)."
+        task = f"Place this order: sell the whole {order['symbol']} position (dollars 0)."
     else:
         task = f"Place this order: buy {order['dollars']} dollars of {order['symbol']}."
     return await run_agent("trader", task=task, instructions=INSTRUCTIONS, answer=REPORT,

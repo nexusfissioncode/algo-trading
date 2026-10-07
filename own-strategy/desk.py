@@ -29,12 +29,14 @@ def signed_order(ticket, verdict):
         return None
     if ticket["side"] == "sell":
         return {"symbol": ticket["symbol"], "side": "sell", "dollars": 0}
-    dollars = min(float(verdict["dollars"]), float(ticket["dollars"]), RULES["max_dollars_per_order"])
+    cap = RULES["max_dollars_per_order"]
+    dollars = min(float(verdict["dollars"]), float(ticket["dollars"]), cap)
     return {"symbol": ticket["symbol"], "side": "buy", "dollars": dollars} if dollars > 0 else None
 
 
 async def one(symbol, strat):
-    print(f"\ndesk: {symbol} with '{strat['name']}', {datetime.now(timezone.utc):%H:%M} UTC", flush=True)
+    now = datetime.now(timezone.utc)
+    print(f"\ndesk: {symbol} with '{strat['name']}', {now:%H:%M} UTC", flush=True)
     entry = {"at": datetime.now(timezone.utc).isoformat(timespec="seconds"), "symbol": symbol,
              "strategy": strat["name"]}
     entry["ticket"] = ticket = await analyst(symbol, strat)
@@ -52,7 +54,8 @@ async def one(symbol, strat):
             handoff(f"SIGNED ORDER {symbol}  desk -> trader", order)
             entry["report"] = report = await trader(order)
             handoff(f"REPORT {symbol}  trader -> desk", report)
-            entry["outcome"] = ("bought" if order["side"] == "buy" else "sold") if report["placed"] else "refused"
+            done = "bought" if order["side"] == "buy" else "sold"
+            entry["outcome"] = done if report["placed"] else "refused"
     with LOG.open("a") as f:
         f.write(json.dumps(entry) + "\n")
     print(f"desk: {symbol} {entry['outcome']} - logged to {LOG.name}", flush=True)
@@ -73,5 +76,5 @@ def arg(name):
 if __name__ == "__main__":
     if arg("--snapshot"):
         os.environ["DESK_SNAPSHOT"] = arg("--snapshot")
-    coins = [a for a in sys.argv[1:] if "/" in a and not a.endswith(".md") and not a.endswith(".json")]
+    coins = [a for a in sys.argv[1:] if a.endswith("/USD")]
     asyncio.run(run(strategy.load(arg("--strategy")), coins or None))
