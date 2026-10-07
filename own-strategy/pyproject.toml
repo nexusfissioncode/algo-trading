@@ -1,0 +1,18 @@
+[project]
+name = "own-strategy"
+version = "0.1.0"
+description = "Your trading strategy in a plain-English file, read back and followed by a desk of Claude agents."
+requires-python = ">=3.10"
+dependencies = [
+    "claude-agent-sdk>=0.2.163",
+    "alpaca-py>=0.43",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

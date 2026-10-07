@@ -11,6 +11,7 @@ and every folder's own README lists the commands.
 | [`guardrail-mcp/`](guardrail-mcp) | Your own MCP server: an RSI tool, and an order tool that checks your rules in code before anything reaches the broker. | [I tried to talk my AI past my trading rules. Code stopped it.](https://youtu.be/b_npdVpQN9k) |
 | [`scheduled-agents/`](scheduled-agents) | Two Claude Code skills - a morning brief and a trade journal - run by cron, read-only, with nobody at the keyboard. | [My AI agent writes my trading brief at 6:30am](https://youtu.be/XZ1VAnWPryQ) |
 | [`agent-desk/`](agent-desk) | A desk of three agents on the Claude Agent SDK - an analyst, a risk manager and a trader - that check each other before an order goes anywhere. | [I split my AI trader into three agents](https://youtu.be/hw7mvZeQZxE) |
+| [`own-strategy/`](own-strategy) | Your strategy in one plain-English file: the desk reads it back before it may trade, follows it, and names the rule behind every ticket. Template in `strategies/`. | coming next |
 
 ## Before you run anything
 
