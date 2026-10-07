@@ -40,12 +40,13 @@ async def one(symbol, strat):
     entry = {"at": datetime.now(timezone.utc).isoformat(timespec="seconds"), "symbol": symbol,
              "strategy": strat["name"]}
     entry["ticket"] = ticket = await analyst(symbol, strat)
-    handoff(f"TICKET {symbol}  analyst -> risk  ({ticket['rule']})", ticket)
+    name = strat["name"]
+    handoff(f"TICKET {symbol}  analyst -> risk  ({name}: {ticket['rule']})", ticket)
     if ticket["side"] == "none":
         entry["outcome"] = "nothing to do"
     else:
         entry["verdict"] = verdict = await risk(ticket, strat)
-        handoff(f"VERDICT {symbol}  risk -> desk", verdict)
+        handoff(f"VERDICT {symbol}  risk -> desk  ({name})", verdict)
         order = signed_order(ticket, verdict)
         if not order:
             entry["outcome"] = "vetoed"
@@ -58,7 +59,7 @@ async def one(symbol, strat):
             entry["outcome"] = done if report["placed"] else "refused"
     with LOG.open("a") as f:
         f.write(json.dumps(entry) + "\n")
-    print(f"desk: {symbol} {entry['outcome']} - logged to {LOG.name}", flush=True)
+    print(f"desk: {symbol} {entry['outcome']} ({name}) - logged to {LOG.name}", flush=True)
     return entry
 
 
