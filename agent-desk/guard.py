@@ -1,4 +1,4 @@
-"""The guard from the last-but-one video: your rules, in code. The only way an order reaches the
+"""The guard from guardrail-mcp: your rules, in code. The only way an order reaches the
 broker, and it checks every rule first - whatever any agent was told."""
 import json
 from pathlib import Path

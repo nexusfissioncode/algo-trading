@@ -1,16 +1,10 @@
 # scheduled-agents
 
-Every command from the video, as in its description.
+Two Claude Code skills - a morning brief and a trade journal - run by cron, read-only, with nobody at the keyboard.
+
+Paper trading only; code to learn from, not financial advice. Every command, in order:
 
 ```text
-Every command from the video, in order. Paper trading only; education, not financial advice.
-
-EARLIER IN THE SERIES
-Claude and Alpaca, by chat: https://youtu.be/EYmt8iX31ao
-An alert wakes Claude: https://youtu.be/SED4Wyf82l0
-Always on, for free: https://youtu.be/K26jC0z6n2w
-Your rules, in code (the guard): https://youtu.be/b_npdVpQN9k
-
 SETUP
 Claude Code: https://code.claude.com/docs/en/setup  uv: https://docs.astral.sh/uv/
 claude mcp add alpaca --scope project -e 'ALPACA_API_KEY=${ALPACA_API_KEY}' -e 'ALPACA_SECRET_KEY=${ALPACA_SECRET_KEY}' -e ALPACA_PAPER_TRADE=true -- uvx alpaca-mcp-server

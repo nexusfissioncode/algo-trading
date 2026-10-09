@@ -1,10 +1,10 @@
 # alert-to-claude
 
-Every command from the video, as in its description.
+A TradingView alert wakes Claude Code, which checks the setup through the Alpaca MCP server and places the order - or explains why not.
+
+Paper trading only; code to learn from, not financial advice. Every command, in order:
 
 ```text
-COPY AND PASTE: everything from the video
-
 Install (macOS)
 Claude Code:
 curl -fsSL https://claude.ai/install.sh | bash
@@ -56,5 +56,4 @@ Webhook URL: https://YOUR-WORDS.trycloudflare.com/alert
 Message:
 {"secret":"pick-a-word","ticker":"{{ticker}}","action":"{{strategy.order.action}}","price":{{close}}}
 
-Paper trading only. Nothing in this video is financial advice.
 ```

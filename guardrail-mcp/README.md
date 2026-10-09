@@ -1,15 +1,10 @@
 # guardrail-mcp
 
-Every command from the video, as in its description.
+Your own MCP server: an RSI tool, and an order tool that checks your rules in code before anything reaches the broker.
+
+Paper trading only; code to learn from, not financial advice. Every command, in order:
 
 ```text
-Every command from the video, in order. Paper trading only; education, not financial advice.
-
-EARLIER IN THE SERIES
-Claude and Alpaca, by chat: https://youtu.be/EYmt8iX31ao
-An alert wakes Claude: https://youtu.be/SED4Wyf82l0
-Always on, for free: https://youtu.be/K26jC0z6n2w
-
 SETUP
 Claude Code: https://code.claude.com/docs/en/setup
 curl -fsSL https://claude.ai/install.sh | bash   (then run: claude, and sign in)
@@ -81,7 +76,7 @@ Ctrl+O shows each tool call and its answer.
            "mcp__alpaca__place_option_order", "mcp__alpaca__close_position",
            "mcp__alpaca__close_all_positions", "mcp__alpaca__replace_order_by_id"]}}
 
-THE BOT FROM VIDEO TWO, GUARDED
+THE ALERT BOT (alert-to-claude), GUARDED
 In receiver.py, the allowed tools: replace mcp__alpaca__place_crypto_order and
 mcp__alpaca__close_position with mcp__guard__rsi and mcp__guard__place_order.
 In the bot's .mcp.json, add the guard beside alpaca:
@@ -91,6 +86,6 @@ Run it and send a test alert:
 export ALERT_SECRET=pick-a-long-secret
 python3 receiver.py
 curl -s -X POST localhost:8765/alert -d '{"secret": "pick-a-long-secret", "ticker": "BTCUSD", "action": "buy", "price": 84000}'
-On the server from video three: copy server.py and rules.json next to the bot, then
+On the always-on server (always-on-cloud): copy server.py and rules.json next to the bot, then
 sudo systemctl restart alert-bot
 ```

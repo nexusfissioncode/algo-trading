@@ -1,10 +1,10 @@
 # always-on-cloud
 
-Every command from the video, as in its description.
+The alert bot on a free Google Cloud e2-micro, always on: systemd, Caddy, keys in Secret Manager.
+
+Paper trading only; code to learn from, not financial advice. Every command, in order:
 
 ```text
-Every command from the video, in order. Paper trading only.
-
 FREE TIER: https://cloud.google.com/free/docs/free-cloud-features#compute
 
 GCLOUD (on your laptop): https://cloud.google.com/sdk/docs/install
@@ -42,7 +42,7 @@ printf %s "$ALERT_SECRET" | gcloud secrets create alert-secret --data-file=-
 SA=$(gcloud compute instances describe alert-bot --zone us-west1-b --format "value(serviceAccounts[0].email)")
 gcloud projects add-iam-policy-binding $PROJECT --member serviceAccount:$SA --role roles/secretmanager.secretAccessor --condition None --format none
 
-THE BOT (receiver.py, rules.md, .mcp.json from the last video, plus:)
+THE BOT (receiver.py, rules.md, .mcp.json from alert-to-claude, plus:)
 
 start.sh
 #!/bin/sh
