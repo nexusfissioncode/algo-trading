@@ -11,6 +11,7 @@ and every folder's own README lists the commands, in order.
 | [`scheduled-agents/`](scheduled-agents) | Two Claude Code skills - a morning brief and a trade journal - run by cron, read-only, with nobody at the keyboard. |
 | [`agent-desk/`](agent-desk) | A desk of three agents on the Claude Agent SDK - an analyst, a risk manager and a trader - that check each other before an order goes anywhere. |
 | [`own-strategy/`](own-strategy) | Your strategy in one plain-English file: the desk reads it back before it may trade, follows it, and names the rule behind every ticket. Template in `strategies/`. |
+| [`robinhood-agents/`](robinhood-agents) | Claude Code on Robinhood's own MCP server, trading only in the separate agentic account: the connect command and a settings file that asks before every crypto order and denies stock and option orders. |
 
 ## Before you run anything
 

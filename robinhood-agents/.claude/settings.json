@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "defaultMode": "default",
+    "allow": [
+      "mcp__robinhood-trading"
+    ],
+    "ask": [
+      "mcp__robinhood-trading__place_crypto_order",
+      "mcp__robinhood-trading__cancel_crypto_order"
+    ],
+    "deny": [
+      "mcp__robinhood-trading__place_equity_order",
+      "mcp__robinhood-trading__place_option_order",
+      "mcp__robinhood-trading__exercise_option"
+    ]
+  }
+}
