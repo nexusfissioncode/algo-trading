@@ -12,6 +12,7 @@ and every folder's own README lists the commands, in order.
 | [`agent-desk/`](agent-desk) | A desk of three agents on the Claude Agent SDK - an analyst, a risk manager and a trader - that check each other before an order goes anywhere. |
 | [`own-strategy/`](own-strategy) | Your strategy in one plain-English file: the desk reads it back before it may trade, follows it, and names the rule behind every ticket. Template in `strategies/`. |
 | [`robinhood-agents/`](robinhood-agents) | Claude Code on Robinhood's own MCP server, trading only in the separate agentic account: the connect command and a settings file that asks before every crypto order and denies stock and option orders. |
+| [`tradingview-mcp/`](tradingview-mcp) | Claude Code on TradingView's own MCP server: the connect command, a settings file that lets read-only tools run and asks before anything that changes your watchlists or alerts, every prompt used, and a strategy file that turns a fired alert into an Alpaca paper order. |
 
 ## Before you run anything
 
