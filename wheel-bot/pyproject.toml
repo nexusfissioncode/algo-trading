@@ -1,0 +1,18 @@
+[project]
+name = "wheel-bot"
+version = "0.1.0"
+description = "The wheel on an Alpaca paper account: pick stocks from your list or a screen, sell cash-secured puts, sell covered calls."
+requires-python = ">=3.11"
+dependencies = [
+    "alpaca-py>=0.43",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+filterwarnings = ["ignore::DeprecationWarning:websockets.*"]

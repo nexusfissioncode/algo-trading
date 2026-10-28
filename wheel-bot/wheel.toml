@@ -1,0 +1,53 @@
+# The wheel bot's settings. Every number here is a placeholder to learn with, not advice.
+
+# Which stocks may get a new put: "list" (yours, below), "screen" (filters, below),
+# or the name of your own file in pickers/.
+picker = "screen"
+
+[list]
+symbols = ["AAPL", "MSFT", "JPM", "KO", "WMT"]
+
+[screen]
+filters = ["market_cap", "rsi"]       # run in this order; each one is a file in filters/
+
+[filters.market_cap]
+min_dollars = 100_000_000_000         # one hundred billion
+us_only = true                        # a foreign company's share count is not its ADRs' count
+sec_user_agent = "Your Name your-email@example.com"   # the SEC asks every caller to say who it is
+
+[filters.rsi]
+days = 14
+below = 30                            # under 30 is called oversold
+
+[filters.above_200]
+days = 200
+
+[put]
+delta = 0.30            # roughly a 30% chance of ending in the money
+delta_within = 0.10     # never further from it than this
+min_days = 30
+max_days = 45
+min_open_interest = 100
+max_spread = 0.25       # the bid-ask gap, as a share of the mid price
+max_cash = 40_000       # the most one put may set aside (strike x 100)
+new_per_run = 1         # how many new puts one run may sell
+max_stocks = 3          # how many stocks may be in the wheel at once
+
+[call]
+delta = 0.30
+delta_within = 0.10
+min_days = 30
+max_days = 45
+min_open_interest = 100
+max_spread = 0.25
+at_or_above_cost = true # never sell a call that would sell the shares for less than they cost
+
+[manage]
+take_profit = 0.50      # buy back once half the premium is made
+roll_days = 21          # roll when this many days or fewer are left
+
+[orders]
+price = "mid"           # or "natural": sell at the bid, buy at the ask - fills sooner, earns less
+walk_steps = 4          # not filled? ask a little less, in this many steps, down to the bid (0: never)
+walk_seconds = 20       # how long each price waits
+walk_past = 2           # then up to this many steps past it: the free quotes lag the real market

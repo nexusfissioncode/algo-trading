@@ -1,0 +1,4 @@
+# One run every weekday, half an hour after the market opens, once quotes have settled.
+# Cron uses this computer's clock: 10:00 in New York is 07:00 in California - set yours.
+# Add it with `crontab -e`, with the real path to this folder. Your computer must be awake.
+0 7 * * 1-5  /path/to/wheel-bot/run-wheel.sh

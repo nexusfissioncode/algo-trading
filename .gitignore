@@ -8,3 +8,4 @@ reports/
 journal.md
 runs.log
 .DS_Store
+.cache/

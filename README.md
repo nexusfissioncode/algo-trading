@@ -13,6 +13,7 @@ and every folder's own README lists the commands, in order.
 | [`own-strategy/`](own-strategy) | Your strategy in one plain-English file: the desk reads it back before it may trade, follows it, and names the rule behind every ticket. Template in `strategies/`. |
 | [`robinhood-agents/`](robinhood-agents) | Claude Code on Robinhood's own MCP server, trading only in the separate agentic account: the connect command and a settings file that asks before every crypto order and denies stock and option orders. |
 | [`tradingview-mcp/`](tradingview-mcp) | Claude Code on TradingView's own MCP server: the connect command, a settings file that lets read-only tools run and asks before anything that changes your watchlists or alerts, every prompt used, and a strategy file that turns a fired alert into an Alpaca paper order. |
+| [`wheel-bot/`](wheel-bot) | The wheel in plain Python: pick stocks from your own list or a screen of filters (market cap, RSI, your own), sell a cash-secured put on the best-paying one, and a covered call on shares you hold. No AI. |
 
 ## Before you run anything
 
