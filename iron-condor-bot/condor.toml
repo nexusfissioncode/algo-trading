@@ -1,0 +1,27 @@
+# Every setting of the bot. The numbers are placeholders to learn with, not advice: change them.
+# Prices are per share; one contract is a hundred shares.
+
+underlying = "SPY"
+contracts = 1
+
+[entry]
+at = "10:00"            # New York time: after the opening swing has settled
+move_factor = 0.85      # expected move = the at-the-money straddle x this
+wing = 5                # dollars from each short strike out to its wing
+least_credit = 0.30     # skip the day if the condor pays less than this
+fill_seconds = 60       # give up on the entry if it has not filled by then
+
+[exits]                 # checked in this order; the first one that fires closes the condor
+take_profit = 0.50      # close when this share of the credit is kept
+stop = 2.0              # close when buying it back costs this many times the credit
+touch = true            # close when the price reaches a short strike
+close_by = "15:15"      # close by this time, whatever happens (Alpaca refuses SPY orders after 15:30)
+
+[watch]
+every = 10              # seconds between looks
+print_every = 60        # seconds between printed lines (replays print every 30 minutes)
+
+[orders]                # the closing walk: start at the mid, step towards paying the ask
+walk_steps = 4          # steps from the mid to the far side
+walk_past = 2           # steps beyond it, when the market runs away
+walk_seconds = 10       # seconds each price is given

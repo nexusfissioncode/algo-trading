@@ -14,6 +14,7 @@ and every folder's own README lists the commands, in order.
 | [`robinhood-agents/`](robinhood-agents) | Claude Code on Robinhood's own MCP server, trading only in the separate agentic account: the connect command and a settings file that asks before every crypto order and denies stock and option orders. |
 | [`tradingview-mcp/`](tradingview-mcp) | Claude Code on TradingView's own MCP server: the connect command, a settings file that lets read-only tools run and asks before anything that changes your watchlists or alerts, every prompt used, and a strategy file that turns a fired alert into an Alpaca paper order. |
 | [`wheel-bot/`](wheel-bot) | The wheel in plain Python: pick stocks from your own list or a screen of filters (market cap, RSI, your own), sell a cash-secured put on the best-paying one, and a covered call on shares you hold. No AI. |
+| [`iron-condor-bot/`](iron-condor-bot) | A same-day iron condor on SPY in plain Python: strikes from the straddle, all four legs in one order, and exits for the target, the stop, a touched strike and the closing time. Replays any past day. |
 
 ## Before you run anything
 

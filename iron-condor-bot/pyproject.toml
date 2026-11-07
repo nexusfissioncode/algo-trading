@@ -1,0 +1,18 @@
+[project]
+name = "iron-condor-bot"
+version = "0.1.0"
+description = "A same-day (0DTE) iron condor on SPY on an Alpaca paper account: strikes from the straddle, four exit rules, a closing walk, and a replay of any past day."
+requires-python = ">=3.11"
+dependencies = [
+    "alpaca-py>=0.43",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+filterwarnings = ["ignore::DeprecationWarning:websockets.*"]
