@@ -6,6 +6,8 @@ A replay also pretends to be the broker: it fills every order at the price asked
 estimate (one-minute bars are trades, not quotes)."""
 import json
 import time
+from array import array
+from bisect import bisect_right
 from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -15,6 +17,13 @@ from broker import kind, strike
 NY = ZoneInfo("America/New_York")
 CACHE = Path(__file__).parent / ".cache"
 BAND = 0.05                     # strikes within 5% of the price are fetched
+BAR = 60                        # seconds a bar covers: a bar stamped 10:00 closes at 10:01
+
+
+def series(rows):
+    """Bars as two plain arrays, seconds and closes: quick to search, and light to hold by the thousand."""
+    return (array("d", (datetime.fromisoformat(b["t"].replace("Z", "+00:00")).timestamp() for b in rows)),
+            array("d", (b["c"] for b in rows)))
 
 
 def occ(stock, expiry, kind, strike):
@@ -56,16 +65,15 @@ class Live:
 
 class Replay:
     """A past trading day, from one-minute bars. The clock starts at 9:30 New York and only moves
-    when the bot sleeps; the price and each option are their last trade at or before the clock."""
+    when the bot sleeps; the price and each option are their last trade in a bar already finished."""
     replay = True
 
     def __init__(self, stock, day, broker=None, bars=None):
         self.stock, self.day = stock, day
         if bars is None:
             bars = self._load(broker)
-        self.spy = [(datetime.fromisoformat(b["t"].replace("Z", "+00:00")).astimezone(NY), b["c"]) for b in bars["stock"]]
-        self.opts = {s: [(datetime.fromisoformat(b["t"].replace("Z", "+00:00")).astimezone(NY), b["c"]) for b in rows]
-                     for s, rows in bars["options"].items()}
+        self.spy = series(bars["stock"])
+        self.opts = {s: series(rows) for s, rows in bars["options"].items()}
         self.clock = datetime(day.year, day.month, day.day, 9, 30, tzinfo=NY)
         self.orders, self.next_id = {}, 1
 
@@ -89,12 +97,8 @@ class Replay:
 
     @staticmethod
     def _at(rows, t):
-        last = None
-        for when, c in rows:
-            if when > t:
-                break
-            last = c
-        return last
+        i = bisect_right(rows[0], t.timestamp() - BAR)      # only bars that have finished by t
+        return rows[1][i - 1] if i else None
 
     def now(self):
         return self.clock

@@ -15,6 +15,7 @@ and every folder's own README lists the commands, in order.
 | [`tradingview-mcp/`](tradingview-mcp) | Claude Code on TradingView's own MCP server: the connect command, a settings file that lets read-only tools run and asks before anything that changes your watchlists or alerts, every prompt used, and a strategy file that turns a fired alert into an Alpaca paper order. |
 | [`wheel-bot/`](wheel-bot) | The wheel in plain Python: pick stocks from your own list or a screen of filters (market cap, RSI, your own), sell a cash-secured put on the best-paying one, and a covered call on shares you hold. No AI. |
 | [`iron-condor-bot/`](iron-condor-bot) | A same-day iron condor on SPY in plain Python: strikes from the straddle, all four legs in one order, and exits for the target, the stop, a touched strike and the closing time. Replays any past day. |
+| [`backtest/`](backtest) | Backtest a strategy's own code over every trading day since February 2024 on Alpaca's free data: no peeking, no day left out, a range of costs, a sweep of settings, walking forward, and one report with what it cannot test. |
 
 ## Before you run anything
 

@@ -123,7 +123,9 @@ def test_a_replayed_quiet_day_takes_profit():
 def test_a_replay_clock_and_prices():
     day = date(2026, 10, 26)
     r = Replay("SPY", day, bars=bars_for_a_quiet_day(day))
-    assert r.now().hour == 9 and r.price() == 760.0
+    assert r.now().hour == 9 and r.price() is None       # 9:30: the first bar has not finished
+    r.sleep(60)
+    assert r.price() == 760.0
     r.sleep_until("10:00")
     assert r.now().hour == 10 and sym("C", 760) in r.quotes([sym("C", 760)])
     assert len(r.chain()) == 62

@@ -1,0 +1,18 @@
+[project]
+name = "backtest"
+version = "0.1.0"
+description = "Run an options bot's own code over every past day: no peeking, no dropped days, costs swept, every setting counted."
+requires-python = ">=3.11"
+dependencies = [
+    "alpaca-py>=0.43",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+filterwarnings = ["ignore::DeprecationWarning:websockets.*"]

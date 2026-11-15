@@ -102,12 +102,22 @@ def quotes(symbols):
     return {s: {"bid": float(q.get("bp") or 0), "ask": float(q.get("ap") or 0)} for s, q in got.items()}
 
 
+THIN_DAY = 100      # bars; the shortest real session has about 200
+
+
 @retried
 def stock_minutes(stock, start, end):
-    """One-minute bars, for replaying a past day: [{t, c}], oldest first."""
-    bars = stocks().get_stock_bars(StockBarsRequest(
-        symbol_or_symbols=stock, timeframe=TimeFrame.Minute, start=start, end=end, feed=DataFeed.IEX))
-    return [{"t": b["t"], "c": b["c"]} for b in bars.get(stock, [])]
+    """One-minute bars, for replaying a past day: [{t, c}], oldest first. IEX is the feed the bot
+    trades on. It has holes (10 Mar 2025 has no bars at all), so a thin day takes the whole market's."""
+    def rows(feed):
+        bars = stocks().get_stock_bars(StockBarsRequest(
+            symbol_or_symbols=stock, timeframe=TimeFrame.Minute, start=start, end=end, feed=feed))
+        return [{"t": b["t"], "c": b["c"]} for b in bars.get(stock, [])]
+    out = rows(DataFeed.IEX)
+    if len(out) >= THIN_DAY:
+        return out
+    print(f"  {start.date()}  {len(out)} IEX bars, using the whole market's feed", flush=True)
+    return rows(DataFeed.SIP)
 
 
 @retried

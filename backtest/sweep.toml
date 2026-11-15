@@ -1,0 +1,9 @@
+# Every value to try for each setting. A sweep runs every combination, and the report prints how
+# many that was: a result means little without the number of tries behind it.
+
+"exits.take_profit" = [0.25, 0.4, 0.5, 0.6, 0.75]
+"exits.stop" = [1.5, 2.0, 3.0, 99.0]        # 99: no stop
+"exits.touch" = [true, false]
+"entry.move_factor" = [0.6, 0.85, 1.1, 1.4]
+"entry.wing" = [2, 5, 10]
+"entry.at" = ["09:45", "10:00", "10:30", "11:00", "12:00"]

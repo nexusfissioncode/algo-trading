@@ -50,6 +50,10 @@ of the open) and keeps them in `.cache/`. The bot runs exactly as it would live,
 minute, and every order "fills" at the price it asks. Bars are trades, not quotes, so a replayed
 fill is an estimate; a real fill is usually worse.
 
+A bar is stamped with the minute it starts, so the replay only uses bars that have finished by its
+clock (`tests/test_no_peeking.py`); replayed numbers from before this change differ slightly. A day
+with a hole in the free IEX feed (a few days have no bars at all) takes the whole market's feed instead.
+
 ## Where the numbers come from
 
 - **SPY's price**: Alpaca's free IEX feed.
